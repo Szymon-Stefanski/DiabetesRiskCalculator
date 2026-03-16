@@ -71,8 +71,8 @@ def main():
         user_values = [
             min(bmi / 50, 1.0),
             (6 - gen_hlth) / 5,
-            (30 - ment_hlth) / 30,
-            (30 - phys_hlth) / 30,
+            (ment_hlth) / 30,
+            (phys_hlth) / 30,
             age / 13,
             income / 8
         ]
