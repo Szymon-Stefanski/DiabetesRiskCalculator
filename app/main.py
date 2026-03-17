@@ -4,6 +4,13 @@ import numpy as np
 import plotly.graph_objects as go
 
 
+age_labels = {
+    1: "18-24", 2: "25-29", 3: "30-34", 4: "35-39", 5: "40-44",
+    6: "45-49", 7: "50-54", 8: "55-59", 9: "60-64", 10: "65-69",
+    11: "70-74", 12: "75-79", 13: "80 or older"
+}
+
+
 def main():
     try:
         with open("../model/model.pkl", "rb") as f:
@@ -34,7 +41,12 @@ def main():
             heart_dis = st.selectbox("Heart Disease or Attack?", [0, 1],
                                      format_func=lambda x: "Yes" if x == 1 else "No")
             sex = st.selectbox("Sex", [0, 1], format_func=lambda x: "Male" if x == 1 else "Female")
-            age = st.slider("Age Group (1-13)", 1, 13, 7)
+            age = st.select_slider(
+                "Age",
+                options=list(age_labels.keys()),
+                format_func=lambda x: age_labels[x],
+                value=7
+            )
 
         with col2:
             st.subheader("Lifestyle & Socioeconomics")
