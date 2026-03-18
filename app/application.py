@@ -11,15 +11,21 @@ age_labels = {
 }
 
 
+@st.cache_resource
+def load_model():
+    with open("model/model.pkl", "rb") as f:
+        return pkl.load(f)
+
+
 def main():
+    st.set_page_config(page_title="Diabetes Risk Assistant", layout="wide")
+
     try:
-        with open("../model/model.pkl", "rb") as f:
-            model = pkl.load(f)
+        model = load_model()
     except FileNotFoundError:
-        st.error("Model file not found at '../model/model.pkl'.")
+        st.error("Model file not found at 'model/model.pkl'.")
         return
 
-    st.set_page_config(page_title="Diabetes Risk Assistant", layout="wide")
 
     st.title("Diabetes Risk Assistant")
 

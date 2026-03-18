@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH = os.path.join(BASE_DIR, "data", "diabetes.csv")
 
 
-def random_forest(data):
+def train_model(data):
     """
     Trains a Random Forest Classifier on the provided dataset.
 
@@ -76,7 +76,7 @@ def main():
     3. Serializes the model into a pickle file for deployment.
     """
     data = clean_data()
-    model = random_forest(data)
+    model = train_model(data)
 
     with open("model.pkl", "wb") as f:
         pkl.dump(model, f)

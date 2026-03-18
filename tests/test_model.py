@@ -1,7 +1,7 @@
 import pytest
 import pickle as pkl
 import numpy as np
-from model.model import make_prediction
+from model.train import make_prediction
 
 
 @pytest.fixture
