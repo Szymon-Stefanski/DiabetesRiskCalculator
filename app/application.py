@@ -1,7 +1,18 @@
+import os
 import streamlit as st
 import pickle as pkl
 import numpy as np
 import plotly.graph_objects as go
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.path.join(BASE_DIR, "model", "model.pkl")
+
+
+@st.cache_resource
+def load_model():
+    with open(MODEL_PATH, "rb") as f:
+        return pkl.load(f)
 
 
 age_labels = {
@@ -9,12 +20,6 @@ age_labels = {
     6: "45-49", 7: "50-54", 8: "55-59", 9: "60-64", 10: "65-69",
     11: "70-74", 12: "75-79", 13: "80 or older"
 }
-
-
-@st.cache_resource
-def load_model():
-    with open("model/model.pkl", "rb") as f:
-        return pkl.load(f)
 
 
 def main():
